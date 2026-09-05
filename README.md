@@ -86,16 +86,110 @@ Full setup, including what to read and in what order:
 
 ## Using it
 
-The system is **prompt-driven**. A developer says what they want; the skill carries the procedure:
+The system is **prompt-driven**. You say what you want; the skill carries the procedure. You are
+never expected to remember the standards — the skills read them for you at the right moment.
+
+### The three stages
 
 ```
-"create the <Supplier> supplier project"      ->  supplier-bootstrap
-"add search to <Supplier>"                    ->  supplier-feature
-"wire <Supplier> search into the aggregator"  ->  aggregator-wiring
+  supplier-bootstrap  ──▶  supplier-feature  ──▶  aggregator-wiring
+   create the service      build one feature      connect it to the platform
+      (once)                 (repeat per feature)     (repeat per feature)
 ```
 
-Features are built **one at a time**, each verified against the real API before the next starts:
-Auth → Search → Revalidate → Booking → IssueTicket → the rest.
+### 1. Create the service — once per supplier
+
+```
+/supplier-bootstrap create the <Supplier> supplier service, short code XX, REST/JSON
+```
+
+Produces a repository that **builds, runs and passes its tests** with no features in it: solution
+file, project, five environment config files, composition root, dependency registration, Swagger,
+middleware, non-blocking logging, gRPC scaffolding — and the client DTOs **copied from your
+aggregator**, never authored.
+
+It will ask you to confirm the supplier's spelling before creating anything. Namespaces are
+permanent; a typo there is forever.
+
+### 2. Build one feature — repeat
+
+```
+/supplier-feature add search to <Supplier>
+```
+
+Runs the full slice, in this order, and stops at anything it cannot determine:
+
+| Step | What happens |
+| --- | --- |
+| Branch | `feature/search`, from a freshly pulled `staging` |
+| Read the contract | Every client field becomes a mapping checklist |
+| Study the supplier | Documentation and captured responses — never memory |
+| **Escalate** | Unknowns raised **before** code, in one batch |
+| Build | Supplier DTOs → validator → request builder → service → **decomposed mapper** |
+| Test | Mapper, builder, validator and service tests against captured fixtures |
+| **Run it** | Drives the real flow and checks results actually come back |
+| Record | Writes what it learned to `knowledge/suppliers/<supplier>.md` |
+
+Order matters: **Auth → Search → Revalidate → Booking → IssueTicket → the rest.** One at a time.
+Each feature teaches you something about the supplier that the next one needs, and a failure is
+unattributable when three are in flight.
+
+### 3. Wire it to the platform — repeat
+
+```
+/aggregator-wiring wire <Supplier> search into the aggregator
+```
+
+Adds the supplier to the registry, the proto, the gRPC client, the configuration map, the wiring
+service and the settings files — then reviews its own `git diff` against the permitted wiring
+surface before opening the PR. That diff is where unapproved changes hide.
+
+The two pull requests **pair and merge together**, supplier first.
+
+### Not sure which stage you are in
+
+```
+/supplier-development I need to integrate <Supplier>
+```
+
+## When it stops and asks you something
+
+**This is the system working, not failing.** It escalates rather than guessing, because a guess
+about supplier behaviour ships to production against real money.
+
+An escalation arrives in a fixed shape:
+
+```
+Problem:           one sentence - what is blocked
+Evidence:          what was checked, with sources
+Impact:            what is blocked, and what is not
+Possible options:  1, 2, 3 - each with its cost
+Recommended:       which, and why
+Decision required: the one question
+```
+
+Answer the last line. The answer is recorded as a decision record, and work continues.
+
+### The three you will actually see
+
+| Escalation | Who answers |
+| --- | --- |
+| **"This supplier field has no home in the client contract"** | Team lead / contract owner — **never the individual developer** |
+| "No sandbox credentials" | Whoever holds the supplier relationship. An agent cannot register accounts. |
+| "The documentation and the API disagree" | The developer, after checking. Observed behaviour wins. |
+
+Never answer with *"just do whatever works"*. The escalation exists because there is a real
+choice, and picking arbitrarily is how a shared contract ends up with a different shape per
+supplier.
+
+## What it will refuse to do
+
+| Refused without a recorded decision | Why |
+| --- | --- |
+| Change the client contract | Every supplier shares it |
+| Add logic to the aggregator | Shared by every supplier |
+| Invent supplier behaviour | Escalates instead |
+| Report success it did not observe | "It compiles" is not done |
 
 ### The rule that shapes everything
 
@@ -106,6 +200,21 @@ no home, that is an escalation, not a commit — see
 
 The same applies in the aggregator: **wiring only.** You may add a supplier to lists that already
 exist; you may not add business logic, abstractions, or DTO fields.
+
+## Where the work gets recorded
+
+You do not maintain these by hand — the skills update them as part of the work. Know where to
+look:
+
+| File | Holds |
+| --- | --- |
+| [`development/active-supplier.md`](development/active-supplier.md) | What is in progress, and what is blocked |
+| [`development/progress.md`](development/progress.md) | Running history, open questions, assumptions |
+| `knowledge/suppliers/<supplier>.md` | Everything learned about that supplier's API |
+| [`docs/decision-records/`](docs/decision-records/) | Every decision, and why |
+| [`development/readiness.md`](development/readiness.md) | **What this system has and has not proven** |
+
+A discovery that lives only in a chat log is lost. That is what these files are for.
 
 ## Start here
 
