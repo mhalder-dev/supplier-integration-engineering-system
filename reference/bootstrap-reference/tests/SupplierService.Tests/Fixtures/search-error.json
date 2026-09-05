@@ -1,0 +1,6 @@
+{
+  "status": "ERROR",
+  "errorCode": "XX-4021",
+  "errorMessage": "No availability for the requested itinerary",
+  "offers": []
+}

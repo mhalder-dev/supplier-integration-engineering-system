@@ -1,0 +1,27 @@
+{
+  "status": "OK",
+  "offers": [
+    {
+      "offerId": "OFFER-2",
+      "segments": [
+        { "carrier": "XX", "flightNo": "402", "from": "AAA", "to": "BBB",
+          "departsLocal": "2026-10-12T02:10:00", "arrivesLocal": "2026-10-12T07:45:00", "cabin": "Y" }
+      ],
+      "price": { "base": 48000.00, "tax": 12500.50, "total": 60500.50, "currency": "XXX" },
+      "baggageAllowance": "30KG",
+      "cabinBaggage": "8KG",
+      "seatsRemaining": 5
+    },
+    {
+      "offerId": "OFFER-1",
+      "segments": [
+        { "carrier": "XX", "flightNo": "716", "from": "AAA", "to": "CCC",
+          "departsLocal": "2026-10-12T03:30:00", "arrivesLocal": "2026-10-12T06:20:00", "cabin": "C" }
+      ],
+      "price": { "base": 39000.00, "tax": 9800.25, "total": 48800.25, "currency": "XXX" },
+      "baggageAllowance": "40KG",
+      "cabinBaggage": "10KG",
+      "seatsRemaining": 2
+    }
+  ]
+}

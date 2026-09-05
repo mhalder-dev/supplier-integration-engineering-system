@@ -1,0 +1,51 @@
+# Your installation's own config - names your org, paths and hosts. Never commit.
+config/environment.md
+
+# Credentials and secrets — NEVER commit. See docs/coding-standards.md §11 and lesson L-07.
+*.pfx
+*.p12
+*.pem
+*.key
+*.cer
+credentials*.json
+secrets*.json
+appsettings.Local.json
+.env
+.env.*
+
+# Local manual test harnesses — these embed live sandbox credentials
+LocalTests/
+**/LocalTests/
+raw/
+**/raw/
+
+# Supplier documentation under NDA / confidential
+Documents/
+**/Documents/
+
+# .NET
+bin/
+obj/
+*.user
+*.suo
+[Dd]ebug/
+[Rr]elease/
+TestResults/
+*.trx
+*.coverage
+coverage*.xml
+
+# Tooling
+.vs/
+.idea/
+.graphify/
+node_modules/
+
+# OS
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Reference build output
+reference/**/bin/
+reference/**/obj/
