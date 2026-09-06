@@ -150,7 +150,7 @@ now; features only add their four log points.
 ## Step 6 — Client contract DTOs
 
 **Copy, do not author.** Take the definitions from the aggregator — paths in
-[`contracts/client-contract.md`](../../../contracts/client-contract.md) — into:
+[`contracts/README.md`](../../../contracts/README.md) — into:
 
 ```
 Features/<Feature>/DTOs/Client/    the client-contract types for that feature —

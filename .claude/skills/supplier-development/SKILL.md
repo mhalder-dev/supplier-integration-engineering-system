@@ -94,7 +94,7 @@ not observe.**
 ## Reading order
 
 1. [`CLAUDE.md`](../../../CLAUDE.md) — operating rules
-2. [`contracts/client-contract.md`](../../../contracts/client-contract.md) — **what is fixed**
+2. [`contracts/README.md`](../../../contracts/README.md) — **what is fixed**
 3. [`docs/architecture.md`](../../../docs/architecture.md) — service shape
 4. [`docs/supplier-patterns.md`](../../../docs/supplier-patterns.md) — feature shapes
 5. [`docs/coding-standards.md`](../../../docs/coding-standards.md) — code rules
