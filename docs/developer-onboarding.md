@@ -7,6 +7,42 @@ without anyone sitting beside them.
 
 ---
 
+## The map — what everything is for
+
+You open the three green boxes. Claude opens the rest.
+
+```mermaid
+flowchart TD
+    ROOT["supplier-integration-engineering-system"]
+
+    ROOT --> RM["README.md<br/><i>how to use it</i>"]
+    ROOT --> INS["install/<br/><i>run once</i>"]
+    ROOT --> CFG["config/<br/><i>your paths, fill in once</i>"]
+    ROOT --> SK[".claude/skills/<br/><i>the 4 procedures</i>"]
+    ROOT --> DOC["docs/<br/><i>the standards</i>"]
+    ROOT --> KN["knowledge/<br/><i>lessons + supplier facts</i>"]
+    ROOT --> CON["contracts/<br/><i>the fixed client contract</i>"]
+    ROOT --> DEV["development/<br/><i>current state, auto-updated</i>"]
+    ROOT --> REF["reference/<br/><i>a worked example</i>"]
+
+    style RM fill:#e8f4ea,stroke:#4a7c59,stroke-width:2px
+    style INS fill:#e8f4ea,stroke:#4a7c59,stroke-width:2px
+    style CFG fill:#e8f4ea,stroke:#4a7c59,stroke-width:2px
+```
+
+| Folder | Who opens it | When |
+| --- | --- | --- |
+| `README.md` · `install/` · `config/` | **You** | Setup, once |
+| `.claude/skills/` | Claude | Every command you run |
+| `docs/` | Claude | While building — it looks up the rule it needs |
+| `contracts/` | Claude | Before mapping anything |
+| `knowledge/` | Claude | Reads before, writes after |
+| `development/` | Claude writes, **you read** | When you want to know what is blocked |
+| `reference/` | Either | To see what good output looks like |
+
+**The point:** you are not expected to learn 30 documents. You learn three commands. The skills
+carry the standards to Claude at the moment they apply.
+
 ## Part 1 — Setup (once per machine, ~5 minutes)
 
 ### 1. Clone the engineering system

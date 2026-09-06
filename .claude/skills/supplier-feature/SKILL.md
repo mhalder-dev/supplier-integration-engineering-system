@@ -22,7 +22,7 @@ something with no home, that is an escalation — see
 
 ## Before starting
 
-Read: [`contracts/client-contract.md`](../../../contracts/client-contract.md),
+Read: [`contracts/README.md`](../../../contracts/README.md),
 [`docs/supplier-patterns.md`](../../../docs/supplier-patterns.md),
 [`docs/coding-standards.md`](../../../docs/coding-standards.md),
 `knowledge/suppliers/<supplier>.md`.

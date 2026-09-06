@@ -77,8 +77,8 @@ ADR-0001 is still **Proposed**. Until it is decided, every new service defines i
 copies with 17 different hashes and property counts ranging from 4 to 23. The template's copy
 is marked with a warning comment, which is a mitigation, not a fix.
 
-### 6. `tests/schemas/` and `tests/harness/` are promised but empty
-[`tests/README.md`](../tests/README.md) describes a contract-test JSON schema and shared harness
+### 6. Shared contract-test assets do not exist yet
+[`docs/testing-strategy.md`](../docs/testing-strategy.md) describes a contract-test JSON schema and shared harness
 helpers. Neither exists. The schema is blocked on deciding which of the divergent DTO variants
 is canonical — an aggregator-team decision, not one to take unilaterally.
 
